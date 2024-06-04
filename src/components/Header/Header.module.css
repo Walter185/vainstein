@@ -1,0 +1,251 @@
+html {
+    scroll-behavior: smooth;
+}
+.headercontainer{
+    /* border: red solid 1px; */
+    font-family: 'Baloo 2', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.topper{
+    width: 100%;
+    height: 30px;
+    background-color: var(--primary-color);
+    font-family: 'Baloo 2', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: var(--title-color);
+    font-size: 20px;
+}
+.topper ul{
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.topper ul li{
+    border-radius: 100%;
+    width: 46px;
+    height: 46px;
+    list-style: none;
+    background-color: var(--title-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+    transition: ease-in-out 0.5s;
+
+}
+.topper ul li:hover{
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+    /* transform: scale(1.1); */
+}
+.topper ul li a{
+    display: flex;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 25px;
+}
+
+
+.loc{
+    /* border: solid blue 2px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.loc svg{
+    font-size: 27px;
+}
+.contact{
+    /* border: solid blue 2px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo{
+    width: 30%;
+}
+.logo img{
+    width: 148px;
+    height: 62px;
+}
+
+.btn {
+    border-radius: 5px 5px 5px 5px;
+    background-color: var(--primary-color);
+    color: white;
+    width: 150px;
+    height: 40px;
+    margin-right: 0.5rem;
+    border: none;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
+}
+.btn:hover{
+    transform: scale(1.1);
+    transition: ease-in-out 0.5s;
+}
+.btn a {
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+    font-family: Poppins;
+}
+.navbar {
+    background-color: var(--white-color2);
+    width: 100%;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    z-index: 2;
+}
+.navbar ul{
+    /* border:1px solid red; */
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.navbar.fixed {
+    top: 0; /* Altura da classe .topper */
+    position: fixed;
+    width: 100vw;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+}
+.navbar ul li {
+    list-style: none;
+}
+.navbar ul li a{
+    cursor: pointer;
+    text-align: none;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+.navbar ul li a.active {
+    color: red;
+}
+.navbar ul li a:hover{
+    color: var(--primary-color);
+    transition: all 0.5s;
+}
+.navbartrigger{
+    display: none;
+}
+
+
+/* Responsive queries */
+
+@media only screen and (max-width: 1000px) {
+    .topper {
+        font-size: 0.7rem;
+    }
+    .topper ul{
+        padding-left: 1rem;
+        gap:5px
+    }
+    .topper ul li{
+        width: 30px;
+        height: 30px;
+    }
+    .topper ul li a{
+        font-size: 1rem;
+    }
+
+    .loc{
+        width: auto;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    .loc svg{
+        font-size: 30px;
+    }
+    .contact{
+        width: auto;
+        /* border: solid blue 2px; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contact svg{
+        font-size: 15px;
+    }
+
+
+
+    /*navbar */
+    .logo{
+        width: auto;
+    }
+    .headercontainer{
+        padding: 0;
+        border: none; 
+    }
+    .navbar{
+        /* border: red 1px solid; */
+        justify-content: space-evenly;
+        position: relative;
+
+    }
+    .navbar ul {
+        display: none; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top:100%;
+        text-align: center;
+        background-color: var(--white-color2);
+        gap: 0.5rem;
+        border-radius: 0px 0px 8px 8px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    .navbar.fixed {
+        top: -3px; /* Altura da classe .topper */
+        position: fixed;
+        width: 100vw;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .navbar ul.show {
+        display: flex;
+    }
+    .navbar ul li{
+        width: 100%;
+        padding-block: 0.3rem;
+    }
+    .navbar ul li:hover{
+        background: #ccc;
+    }
+
+    .navbartrigger {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        user-select:none;
+    }
+
+    
+}
+
