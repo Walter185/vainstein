@@ -5,12 +5,23 @@ import { SlSocialInstagram } from "react-icons/sl";
 import { TiSocialFacebookCircular} from "react-icons/ti";
 import {BiLogoLinkedin} from "react-icons/bi";
 import "./Nav.jsx";
-import Nav from "./Nav.jsx";
 import logo from "../assets/img/logoPV.png"
 import styled from "styled-components";
+import Nav from 'react-bootstrap/Nav';
+import Barra from "./Nav.jsx";
 
 const Img = styled.img`
-    padding: 10px;
+    width: 230px !important;
+    height: 90px !important;
+    padding-right: 50px;
+
+    @media screen and (max-width: 800px) {
+        width: 150px !important;
+        height: 80px !important;
+        margin-left: 2px;
+        margin-right: -5px;
+        padding-right: 0;
+      } 
 `;
 
 function Header ({children}){
@@ -18,11 +29,11 @@ function Header ({children}){
         <>
         <div id="topper" className={styles.topper}>
             <div className={styles.loc}>
-                <LiaMapMarkerAltSolid /> Guardia Vieja 3440 Piso 1° Dto."B" - Almagro
+                <LiaMapMarkerAltSolid /> Guardia Vieja 3440 Piso 1°"B" - C.A.B.A.
             </div>
             <div className={styles.contact}>
-                {/* <BsFillTelephoneOutboundFill /> (+54) 1164883005 */}
-                <BsWhatsapp /> (+54) 1164883005
+                <BsFillTelephoneOutboundFill /> (54) 1164883005
+                <BsWhatsapp /> (54) 1164883005
             </div>
             <ul>
                 <li><a href="https://www.instagram.com/maruvainstein" target="_blank" rel="noreferrer">
@@ -40,10 +51,10 @@ function Header ({children}){
 
 
                 <nav className={styles.navbar}>
-                    <div className={styles.logo}>
+                <Nav.Link href='/'>
                         <Img src={logo} alt="Logo Paula Vainstein"></Img>
-                    </div>
-                    <Nav></Nav>
+                 </Nav.Link>
+                    <Barra></Barra>
                     <button className={styles.btn}><a href="https://wa.me/5491164883005?text=Hola%20me%20gustaria%20reservar%20un%20turno!" target="_blank" rel="noreferrer">Agendar Turno</a> </button>
                 </nav>
 
