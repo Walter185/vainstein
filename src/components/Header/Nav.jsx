@@ -16,7 +16,6 @@ export default function Nav() {
     });
 
     const handleClick = () => {
-        console.log("clicou no hamburguer");
         setDisplay(!display); // Alterna entre true y false
     };
 
@@ -24,10 +23,8 @@ export default function Nav() {
         const res = window.innerWidth;
 
         if (res <= 1000) {
-            console.log("é menor que 1000px");
             setMobile(true);
         } else {
-            console.log("é maior que 1000px");
             setMobile(false);
         }
         return res;
