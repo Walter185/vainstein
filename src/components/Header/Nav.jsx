@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-scroll";
 import { animated, useSpring } from "@react-spring/web";
 
-export default function Nav() {
+export default function Barra() {
     const [mobile, setMobile] = useState();
     const [display, setDisplay] = useState(false); // Cambiado a booleano
     
@@ -58,7 +58,7 @@ export default function Nav() {
                     <ul style={{ display: display ? "flex" : "none" }}>
                         <animated.div style={springs}>
                             <li>
-                                <Link to="topper" spy={true} smooth={true} onClick={handleClick}>
+                                <Link to="topper" href="#" spy={true} smooth={true} onClick={handleClick}>
                                     Inicio
                                 </Link>
                             </li>
@@ -85,7 +85,7 @@ export default function Nav() {
             {mobile === false && (
                 <ul>
                     <li>
-                        <Link to="topper" spy={true} smooth={true}>
+                        <Link to="topper" href="#" spy={true} smooth={true}>
                             Inicio
                         </Link>
                     </li>
