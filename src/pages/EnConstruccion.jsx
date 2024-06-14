@@ -10,6 +10,10 @@ height: 500px; /* Puedes ajustar la altura del contenedor según tus necesidades
 overflow-x: hidden !important;
 overflow-y: hidden !important;
 overflow: hidden !important;
+background: linear-gradient(90deg, #0062ff, #da61ff);
+height: 100vh;
+width: 100vw;
+
 `;
 
 const Img = styled.img`
@@ -23,8 +27,8 @@ const Img = styled.img`
 
 export default function EnConstruccion() {
   return (
-    <Div className="container">
-      <div>
+    <Div >
+      <div className=".gradient_background">
           <div className="d-flex flex-column justify-content-center">
               <h1 className="text-primary mx-auto my-5">EN CONSTRUCCIÓN</h1>
           </div>
