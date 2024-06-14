@@ -1,0 +1,8 @@
+.timer {
+    font-size: 50px;
+    font-weight: 800;
+    display: flex;
+    width: 100%;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
