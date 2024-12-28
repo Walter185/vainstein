@@ -9,6 +9,10 @@ import logo from "../assets/img/logoPV.png"
 import styled from "styled-components";
 import Nav from 'react-bootstrap/Nav';
 import Barra from "./Nav.jsx";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
+import { useAuth } from "../../Context/Context.js";
+import { PsiContext } from "../../Context/Context.js";
 
 const Img = styled.img`
     width: 230px !important;
@@ -24,7 +28,33 @@ const Img = styled.img`
       } 
 `;
 
+
 function Header ({children}){
+    const { logout, currentUser } = useAuth();
+    const [userRole, setUserRole] = useState(null);
+    const { theme, toggleTheme } = useContext(PsiContext);
+
+    const containerStyles = {
+        backgroundColor: theme === "dark" ? "#343a40" : "#ED1C24",
+        color: theme === "dark" ? "#fff" : "white",
+      };
+
+    useEffect(() => {
+        const fetchUserRole = async () => {
+          if (currentUser) {
+            const db = getFirestore();
+            const userDocRef = doc(db, 'users', currentUser.uid);
+            const userDoc = await getDoc(userDocRef);
+            if (userDoc.exists()) {
+              setUserRole(userDoc.data().role);
+            }
+          }
+        };
+    
+        fetchUserRole();
+      }, [currentUser]);
+    
+    
     return (
         <>
         <div id="topper" className={styles.topper}>
@@ -51,11 +81,32 @@ function Header ({children}){
 
 
                 <nav className={styles.navbar}>
-                <Nav.Link href='/'>
-                        <Img src={logo} alt="Logo Paula Vainstein"></Img>
-                 </Nav.Link>
-                    <Barra></Barra>
-                    <button className={styles.btn}><a href="https://wa.me/5491164883005?text=Hola%20me%20gustaria%20reservar%20un%20turno!" target="_blank" rel="noreferrer">Agendar Turno</a> </button>
+                    <Nav.Link href='/'>
+                            <Img src={logo} alt="Logo Paula Vainstein"></Img>
+                    </Nav.Link>
+                    <Barra />
+                    {!currentUser && (
+                    <Nav.Link
+                        className="ingresar"
+                        href="/login"
+                        // style={containerStyles}
+                    >
+                        ENTRAR
+                    </Nav.Link>
+                    )}
+                    {currentUser && (
+                    <Nav.Link
+                        href="/"
+                        name="logout"
+                        // style={containerStyles}
+                        id="ingresar"
+                        onClick={async (e) => {
+                        await logout();
+                        }}
+                    >
+                        SALIR
+                    </Nav.Link>
+                    )}
                 </nav>
 
 

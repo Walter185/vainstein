@@ -1,0 +1,23 @@
+h2 {
+    text-align: center;
+    padding: 30px;
+}
+
+.inputRestablecimiento {
+    width: 75%;
+    height: 50px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.container {
+    justify-items: center;
+}
+
+.reestablecimiento {
+    margin-top: 50px;
+    width: 290px;
+    height: 60px;
+    /* border-radius: 10px; */
+    font-weight: bolder;
+}

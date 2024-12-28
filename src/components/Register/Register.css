@@ -1,0 +1,50 @@
+.App2 {
+    font-family: sans-serif;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+.contenedor {
+     padding: 5px;
+}
+.form-group {
+    padding: 10px;
+    flex-direction: column;
+}
+
+input {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    border-radius: 10px;
+}
+#botonRegister {
+    width: 30%;
+    height: auto;
+    border-radius: 10px; 
+    font-weight: bolder; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#botonGoogle2 {
+    width: 235px;
+    height: auto;
+    border-radius: 10px;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+.error-message {
+    color: red;
+    font-size: 1.2em; /* Ajusta el tamaño de la fuente según lo necesites */
+  }
+.pie {
+    flex-direction: row;
+}  
+.flex {
+    padding: 20px;
+}
+.o {
+    justify-content: center;
+}

@@ -8,7 +8,7 @@ import { useEffect } from "react";
             distance: distance || '20px',
             easing: easing || 'ease-in-out',
         })
-    }, [props]);
+    }, [props, distance, duration, easing, origin]);
 
     return {
         useReveal,
