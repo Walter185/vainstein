@@ -1,5 +1,6 @@
 import LogoPV from "../../src/components/assets/img/logoPV.png";
 import styled from "styled-components";
+// import LaunchTimer from "../components/Timer";
 
 const Div = styled.div`
 display: flex;
@@ -13,7 +14,13 @@ overflow: hidden !important;
 background: linear-gradient(90deg, #0062ff, #da61ff);
 height: 100vh;
 width: 100vw;
+  font-family: Arial, sans-serif;
 
+display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+    color:#fff;
 `;
 
 const Img = styled.img`
@@ -30,13 +37,16 @@ export default function EnConstruccion() {
     <Div >
       <div className=".gradient_background">
           <div className="d-flex flex-column justify-content-center">
-              <h1 className="text-primary mx-auto my-5">EN CONSTRUCCIÓN</h1>
+              <h1>PÁGINA EN CONSTRUCCIÓN</h1>
           </div>
           <div className="d-flex">
               <div className="d-flex justify-content-center">
                   <Img src={LogoPV} alt="construccion"/>
               </div>
           </div>
+          {/* <div className="d-flex flex-column justify-content-center">
+              <LaunchTimer />
+          </div> */}
       </div>
     </Div>
   )
