@@ -128,7 +128,6 @@ const AppointmentBooking = () => {
       weekday: 'long',
       day: 'numeric',
       month: 'long',
-    //   year: 'numeric',
     }).format(date);
   };
 
@@ -150,6 +149,11 @@ const AppointmentBooking = () => {
       setCurrentWeekStart(prevWeek);
       generateWeekDates(prevWeek);
     }
+  };
+
+  const getMonthYear = () => {
+    const options = { year: 'numeric', month: 'long' };
+    return new Intl.DateTimeFormat('es-ES', options).format(currentWeekStart);
   };
 
   return (
@@ -187,6 +191,7 @@ const AppointmentBooking = () => {
                 >
                   Semana Anterior
                 </button>
+                <span style={{fontWeight:'bolder', textTransform:'uppercase'}} className="align-self-center">{getMonthYear()}</span>
                 <button className="btn btn-secondary" onClick={handleNextWeek}>
                   Semana Siguiente
                 </button>

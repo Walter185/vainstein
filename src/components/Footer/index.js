@@ -11,7 +11,7 @@ function Footer (){
     return (
         <><div id="footer" className={styles.footer}>
             <section className={styles.sectionimg}>
-                <img src={logo} alt="Logo Licenciada Vainstein"></img>
+                <img src={logo} alt="Logo Licenciada Vainstein" id="contacto"></img>
             </section>
 
             <section className={styles.sectioncontact}>

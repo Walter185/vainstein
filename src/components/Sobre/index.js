@@ -20,7 +20,7 @@ function Sobre ({children}){
                     <p>No espere más en invertir en su bienestar mental! 
                     Agende su consulta y comience su transformación!
                     </p>
-                    <button className={button.btn}><a href="/turnos" target="_blank" rel="noreferrer">Agendar Consulta </a></button>
+                    <button className={button.btn}><a href="/turnos">Agendar Consulta </a></button>
                     
                 
             </div>

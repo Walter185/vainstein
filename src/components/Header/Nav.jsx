@@ -2,6 +2,7 @@ import styles from "./Header.module.css";
 import handleScroll from "./functions/fixedNavbar";
 import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-scroll";
+import Nav from "react-bootstrap/Nav";
 import { animated, useSpring } from "@react-spring/web";
 
 export default function Barra() {
@@ -58,15 +59,14 @@ export default function Barra() {
           <ul style={{ display: display ? "flex" : "none" }}>
             <animated.div style={springs}>
               <li>
-                <Link
+              <Nav.Link href="/"
                   to="topper"
-                  href="#"
                   spy={true}
                   smooth={true}
                   onClick={handleClick}
                 >
                   Inicio
-                </Link>
+                </Nav.Link>
               </li>
               <li>
                 <Link to="sobre" spy={true} smooth={true} onClick={handleClick}>
@@ -101,9 +101,14 @@ export default function Barra() {
       {mobile === false && (
         <ul>
           <li>
-            <Link to="topper" href="#" spy={true} smooth={true}>
-              Inicio
-            </Link>
+              <Nav.Link href="/"
+                  to="topper"
+                  spy={true}
+                  smooth={true}
+                  onClick={handleClick}
+                > 
+                Inicio
+              </Nav.Link>
           </li>
           <li>
             <Link to="sobre" spy={true} smooth={true}>
