@@ -29,7 +29,7 @@ export default function Registerpage() {
     try {
       const {nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password} = getInputs();
       if (isSignupValid({nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password })) {
-        await register(nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password);
+        await register(nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password);
         handleRedirectToOrBack();
       } else {
         alert(`Cannot create your account, ${email} might be existed, please try again!`);
@@ -50,7 +50,7 @@ export default function Registerpage() {
     return {nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password};
   };
 
-  const isSignupValid = ({nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password}) => {
+  const isSignupValid = ({nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password}) => {
     
     if (validator.isEmpty(nombre) || !validator.isLength(nombre, { min: 3 })) {
       alert("Por favor ingrese su nombre");

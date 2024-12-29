@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import { Loginpage } from './components/Login/LoginForm';
 import ForgotPassword from './components/Forgot';
 import Registerpage from './components/Register/Registerpage';
+import Footer from './components/Footer';
+import UserProfile from './pages/Admin';
+import AppointmentBooking from './components/Appointments';
 // import EnConstruccion from './pages/EnConstruccion';
 
 function App() {
@@ -17,9 +20,12 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/forgot" element={<ForgotPassword />} />
       <Route path="/login" element={<Loginpage />} />
+      <Route path="/admin" element={<UserProfile />} />
       <Route path="/register" element={<Registerpage />} />
+      <Route path="/turnos" element={<AppointmentBooking />} />
         < Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
     </>
   );

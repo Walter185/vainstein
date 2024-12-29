@@ -102,20 +102,26 @@ function Header({ children }) {
             <Img src={logo} alt="Logo Paula Vainstein"></Img>
           </Nav.Link>
           <Barra />
+          {currentUser && (
+            <Nav.Link href="/admin" className="admin">
+                Perfil &nbsp; &nbsp; 
+            </Nav.Link>
+          )}
           {!currentUser && (
             <Nav.Link className="ingresar" href="/login">
-              ENTRAR
+                Ingresar
             </Nav.Link>
           )}
           {currentUser && (
             <Nav.Link
+              id="logout"
               href="/"
               name="logout"
               onClick={async (e) => {
                 await logout();
               }}
             >
-              SALIR
+              Salir
             </Nav.Link>
           )}
         </nav>

@@ -30,13 +30,13 @@ export default function Slider() {
                 <SwiperSlide key={item.id}>
                     <div className={styles.sliderimage}>
                         <img src={item.image} alt={item.title}/>
-                        <div className={styles.boxblack}></div>
+                        {/* <div className={styles.boxblack}></div>
                         <div className={styles.slidetext}>
                         <span>
                             <h1>{item.title}</h1>
                         </span>
                         <p>{item.description}</p>
-                        </div>
+                        </div> */}
                     </div>
                 </SwiperSlide>
             ))}

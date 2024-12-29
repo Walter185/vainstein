@@ -124,6 +124,10 @@ html {
     gap: 2rem;
 }
 
+#logout {
+    margin-top: -100px !important;
+ 
+}
 
 .navbar.fixed {
     top: 0; /* Altura da classe .topper */
