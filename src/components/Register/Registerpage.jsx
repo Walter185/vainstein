@@ -27,9 +27,9 @@ export default function Registerpage() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const {nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password,role='user' } = getInputs();
-      if (isSignupValid({nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password })) {
-        await register(nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password,role);
+      const {nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password} = getInputs();
+      if (isSignupValid({nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password })) {
+        await register(nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password);
         handleRedirectToOrBack();
       } else {
         alert(`Cannot create your account, ${email} might be existed, please try again!`);
@@ -41,13 +41,13 @@ export default function Registerpage() {
   const getInputs = () => {
     const nombre = nombreRef.current.value;
     const apellido = apellidoRef.current.value;
+    const fechaNacimiento = fechaNacimientoRef.current.value; 
     const domicilio = domicilioRef.current.value;
     const telefono = telefonoRef.current.value;
     const dni = dniRef.current.value;
-    const fechaNacimiento = fechaNacimientoRef.current.value; 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    return {nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password};
+    return {nombre,apellido,fechaNacimiento,domicilio,telefono,dni,email,password};
   };
 
   const isSignupValid = ({nombre,apellido,domicilio,telefono,dni,fechaNacimiento,email,password}) => {
@@ -99,13 +99,17 @@ export default function Registerpage() {
   return (
     <>
       <div className="App2">
-        <h1 className="text-center my-12">Lic. Vainstein| Registro</h1>
-        <div className="contenedor">
-          <div className="row d-flex justify-content-center">
-            <div className="col-md-4">
-              <form onSubmit={handleSignup} >
+      <h1 className="text-center my-12">Registro</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <form onSubmit={handleSignup}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Columna izquierda */}
+              <div className="space-y-4">
                 <div className="form-group">
-                  <label htmlFor="nombre" className="block mb-1 text-sm font-medium">Nombre</label>
+                  <label htmlFor="nombre" className="block mb-1 text-sm font-medium">
+                    Nombre
+                  </label>
                   <input
                     type="text"
                     placeholder="Ingrese nombre..."
@@ -115,7 +119,9 @@ export default function Registerpage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="apellido" className="block mb-1 text-sm font-medium">Apellido</label>
+                  <label htmlFor="apellido" className="block mb-1 text-sm font-medium">
+                    Apellido
+                  </label>
                   <input
                     type="text"
                     placeholder="Ingrese apellido..."
@@ -125,7 +131,9 @@ export default function Registerpage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="nacimiento" className="block mb-1 text-sm font-medium">Fecha de Nacimiento (Debes ser mayor de edad)</label>
+                  <label htmlFor="nacimiento" className="block mb-1 text-sm font-medium">
+                    Fecha de Nacimiento
+                  </label>
                   <input
                     type="date"
                     required
@@ -134,7 +142,9 @@ export default function Registerpage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="domicilio" className="block mb-1 text-sm font-medium">Domicilio</label>
+                  <label htmlFor="domicilio" className="block mb-1 text-sm font-medium">
+                    Domicilio
+                  </label>
                   <input
                     type="text"
                     placeholder="Ingrese domicilio..."
@@ -143,18 +153,26 @@ export default function Registerpage() {
                     className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
+              </div>
+
+              {/* Columna derecha */}
+              <div className="space-y-4">
                 <div className="form-group">
-                  <label htmlFor="telefono" className="block mb-1 text-sm font-medium">Telefono</label>
+                  <label htmlFor="telefono" className="block mb-1 text-sm font-medium">
+                    Teléfono
+                  </label>
                   <input
                     type="number"
-                    placeholder="Ingrese telefono..."
+                    placeholder="Ingrese teléfono..."
                     required
                     ref={telefonoRef}
                     className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="dni" className="block mb-1 text-sm font-medium">DNI o CI</label>
+                  <label htmlFor="dni" className="block mb-1 text-sm font-medium">
+                    DNI o CI
+                  </label>
                   <input
                     type="number"
                     placeholder="Ingrese DNI o CI..."
@@ -164,7 +182,9 @@ export default function Registerpage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email" className="block mb-1 text-sm font-medium">Email address</label>
+                  <label htmlFor="email" className="block mb-1 text-sm font-medium">
+                    Email address
+                  </label>
                   <input
                     type="email"
                     placeholder="Ingrese email..."
@@ -174,36 +194,46 @@ export default function Registerpage() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password" className="block mb-1 text-sm font-medium">Contraseña</label>
+                  <label htmlFor="password" className="block mb-1 text-sm font-medium">
+                    Contraseña
+                  </label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="Ingrese contraseña..."
                     required
                     ref={passwordRef}
                     className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
-                
-                <Button type="submit" id="botonLogin"> Registrarse </Button>
-                {error && (
-                  <div className="text-red-500 mt-2 error-message">{errorMessage}</div>
-                )}
-              </form>
-              <span className="flex">
-                <Link to="/forgot" className="text-blue-500 hover:underline">
-                  Olvidó su contraseña?
-                </Link>
-              </span>
-              <span className="flex">
-                <Link to="/login" className="text-blue-500 hover:underline">
-                  Ya tiene usuario? Ingrese aquí
-                </Link>
-              </span>
-            
               </div>
-          </div>
+            </div>
+
+            {/* Botón y mensajes centrados debajo de las columnas */}
+            <div className="mt-6 flex flex-col items-center space-y-4">
+              <Button type="submit" id="botonLogin" className="w-full md:w-auto">
+                Registrarse
+              </Button>
+
+              {error && (
+                <div className="text-red-500 text-center error-message">
+                  {errorMessage}
+                </div>
+              )}
+
+              <div className="flex flex-col items-center space-y-2">
+                <Link to="/forgot" className="text-blue-500 hover:underline">
+                  ¿Olvidó su contraseña?
+                </Link>
+                <Link to="/login" className="text-blue-500 hover:underline">
+                  ¿Ya tiene usuario? Ingrese aquí
+                </Link>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
+
     </>
   );
 }

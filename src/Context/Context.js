@@ -33,10 +33,10 @@ const PsiContext = createContext({
       await setDoc(doc(db, "pacientes", auth?.currentUser?.uid), {
         nombre,
         apellido,
+        fechaNacimiento,
         domicilio,
         telefono,
         dni,
-        fechaNacimiento,
         email,
         password,
         role: 'user'

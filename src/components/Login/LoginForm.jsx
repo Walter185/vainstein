@@ -63,7 +63,7 @@ export const Loginpage = () => {
   return (
     <>
       <div className="App">
-        <h1 className="text-center my-12">Lic. Vainstein | Inicio de Sesión </h1>
+        <h1 className="text-center my-12">Inicio de Sesión </h1>
         <br></br>
         <div className="contenedor">
           <div className="row d-flex justify-content-center">
