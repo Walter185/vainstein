@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import emailjs from '@emailjs/browser';
 
 const AppointmentBooking = () => {
   const [weekDates, setWeekDates] = useState([]);
@@ -23,6 +24,28 @@ const AppointmentBooking = () => {
     generateWeekDates(nextAvailableDay);
     fetchUserDetails();
   }, []);
+
+ // Función para enviar email usando EmailJS
+ const sendNotificationEmail = async (date, time, patientName, patientEmail) => {
+  try {
+    const templateParams = {
+      to_email: 'admin@tudominio.com', // Email del admin
+      date: date,
+      time: time,
+      patient_name: patientName,
+      patient_email: patientEmail
+    };
+
+    await emailjs.send(process.env.REACT_APP_SERVICE_ID,process.env.REACT_APP_TEMPLATE_ID,
+      templateParams,
+      process.env.REACT_APP_PUBLIC_KEY
+      );
+
+      console.log('Notificación enviada exitosamente');
+    } catch (error) {
+      console.error('Error al enviar notificación:', error);
+    }
+  };
 
   const navigateWeek = (direction) => {
     if (!currentWeekStart) return;
@@ -153,6 +176,8 @@ const AppointmentBooking = () => {
 
       // Obtener nombre del usuario
       let userName = auth.currentUser.displayName;
+      const userEmail = auth.currentUser.email;
+
 
       // Si no existe displayName, buscar en Firestore
       if (!userName) {
@@ -197,6 +222,8 @@ const AppointmentBooking = () => {
           name: userName, // Asegurar que se guarde el nombre en Firestore
         });
       }
+      // Enviar notificación por email
+      await sendNotificationEmail(date, time, userName, userEmail);
 
       setSuccess(`¡Turno reservado exitosamente para el ${date} a las ${time}!`);
       fetchUserDetails();
