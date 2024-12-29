@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { NavLink } from "react-router-dom";
 
 const DEFAULT_AVATAR =
   "data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3e%3ccircle cx='12' cy='7' r='4'/%3e%3c/svg%3e";
@@ -71,7 +72,7 @@ const UserProfile = () => {
     }
   };
 
-  const cancelNextAppointment = async () => {
+  const cancelAppointment = async (date, time) => {
     try {
       const user = auth.currentUser;
       if (!user) throw new Error("No hay usuario autenticado");
@@ -81,38 +82,29 @@ const UserProfile = () => {
 
       if (userAppointmentsDoc.exists()) {
         const appointments = userAppointmentsDoc.data().appointments || [];
-        const nextAppointment = appointments[0]; // Asumiendo que está ordenado por fecha
+        const updatedAppointments = appointments.filter(
+          (appt) => appt.date !== date || appt.time !== time
+        );
+        await updateDoc(userAppointmentsRef, { appointments: updatedAppointments });
 
-        if (nextAppointment) {
-          // Eliminar el turno del usuario
-          const updatedAppointments = appointments.filter(
-            (appt) =>
-              appt.date !== nextAppointment.date || appt.time !== nextAppointment.time
-          );
-          await updateDoc(userAppointmentsRef, { appointments: updatedAppointments });
+        const appointmentRef = doc(db, "appointments", date);
+        const appointmentDoc = await getDoc(appointmentRef);
 
-          // Eliminar el turno de la colección "appointments"
-          const appointmentRef = doc(db, "appointments", nextAppointment.date);
-          const appointmentDoc = await getDoc(appointmentRef);
+        if (appointmentDoc.exists()) {
+          const bookedSlots = appointmentDoc.data().bookedSlots || [];
+          const updatedSlots = bookedSlots.filter((slot) => slot !== time);
 
-          if (appointmentDoc.exists()) {
-            const bookedSlots = appointmentDoc.data().bookedSlots || [];
-            const updatedSlots = bookedSlots.filter(
-              (slot) => slot !== nextAppointment.time
-            );
+          const currentDetails = appointmentDoc.data().details || {};
+          delete currentDetails[time];
 
-            if (updatedSlots.length > 0) {
-              await updateDoc(appointmentRef, { bookedSlots: updatedSlots });
-            } else {
-              await updateDoc(appointmentRef, { bookedSlots: [] });
-            }
-          }
-
-          setSuccess("El turno ha sido cancelado exitosamente.");
-          fetchUserData(); // Recargar los datos del usuario
-        } else {
-          setError("No hay turnos próximos para cancelar.");
+          await updateDoc(appointmentRef, {
+            bookedSlots: updatedSlots,
+            details: currentDetails,
+          });
         }
+
+        setSuccess(`El turno del ${date} a las ${time} ha sido cancelado.`);
+        fetchUserData();
       } else {
         setError("No se encontraron datos del usuario.");
       }
@@ -157,22 +149,25 @@ const UserProfile = () => {
           )}
 
           <div className="mb-4">
-            <h6>Próximo Turno:</h6>
-            {userData?.appointments?.[0] ? (
-              <>
-                <p>
-                  Fecha: {userData.appointments[0].date} - Hora:{" "}
-                  {userData.appointments[0].time}
-                </p>
-                <button
-                  className="btn btn-danger"
-                  onClick={cancelNextAppointment}
-                >
-                  Cancelar Próximo Turno
-                </button>
-              </>
+            <h6>Mis Turnos Futuros:</h6>
+            {userData?.appointments?.length > 0 ? (
+              <ul className="list-group">
+                {userData.appointments.map((appt, index) => (
+                  <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                      Fecha: {appt.date} - Hora: {appt.time}
+                    </span>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => cancelAppointment(appt.date, appt.time)}
+                    >
+                      Cancelar
+                    </button>
+                  </li>
+                ))}
+              </ul>
             ) : (
-              <p>No tienes turnos próximos.</p>
+              <p>No tienes turnos futuros.</p>
             )}
           </div>
 
@@ -224,13 +219,22 @@ const UserProfile = () => {
               </button>
             </form>
           ) : (
+            <>
             <button
               className="btn btn-secondary"
               onClick={() => setIsEditing(true)}
             >
               Editar Perfil
             </button>
-          )}
+            <span> </span>
+            <a
+            className="btn btn-secondary"
+            href="/turnos"
+            >
+                Modificar Turno
+            </a>
+              </>
+              )}
         </div>
       </div>
     </div>

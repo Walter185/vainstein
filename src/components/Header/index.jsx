@@ -104,7 +104,7 @@ function Header({ children }) {
           <Barra />
           {currentUser && (
             <Nav.Link href="/admin" className="admin">
-                Perfil &nbsp; &nbsp; 
+                Mis Turnos &nbsp; &nbsp; 
             </Nav.Link>
           )}
           {!currentUser && (

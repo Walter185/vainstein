@@ -17,12 +17,9 @@ export const Loginpage = () => {
   const passwordRef = useRef(null);
 
   const handleRedirectToOrBack = (role) => {
-    if (role === 'admin') {
-      navigate(location.state?.from ?? '/show');
-    } else {
-      navigate('/');
-    }
-  };
+      navigate(location.state?.from ?? '/turnos');
+    };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
