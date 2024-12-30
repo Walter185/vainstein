@@ -83,7 +83,7 @@ export default function Barra() {
                   Contacto
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="ubicacion"
                   spy={true}
@@ -92,7 +92,7 @@ export default function Barra() {
                 >
                   Ubicación
                 </Link>
-              </li>
+              </li> */}
             </animated.div>
           </ul>
         </>
@@ -120,11 +120,11 @@ export default function Barra() {
               Contacto
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="ubicacion" spy={true} smooth={true}>
               Ubicación
             </Link>
-          </li>
+          </li> */}
         </ul>
       )}
     </>

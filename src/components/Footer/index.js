@@ -16,10 +16,10 @@ function Footer (){
 
             <section className={styles.sectioncontact}>
                 <h2>CONTACTO:</h2>
-                <p id="locicon"><FiMapPin />Guardia Vieja 3440</p>
+                {/* <p id="locicon"><FiMapPin />  Atención Virtual </p> */}
                 {/* <p><BsFillTelephoneOutboundFill /> (+54) 99738-6828 - Telefone</p> */}
-                <p><BsWhatsapp /> (+54) 911 6488 3005- Whatsapp</p>
-                <p><BsEnvelopeAt /> maru.vainstein@gmail.com</p>
+                <p><BsWhatsapp /> (+54) 911 6488 3005</p>
+                <p><BsEnvelopeAt /> <a className="mail" href="mailto:maru.vainstein@gmail.com">maru.vainstein@gmail.com</a> </p>
             </section>
 
             <section className={styles.sectionsocial}>

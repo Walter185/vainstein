@@ -57,10 +57,10 @@ function Header({ children }) {
     <>
       <div id="topper" className={styles.topper}>
         <div className={styles.loc}>
-          <LiaMapMarkerAltSolid /> Guardia Vieja 3440 Piso 1°"B" - C.A.B.A.
+          <LiaMapMarkerAltSolid />  - Atención Virtual - 
         </div>
         <div className={styles.contact}>
-          <BsFillTelephoneOutboundFill /> (54) 1164883005
+          {/* <BsFillTelephoneOutboundFill /> (54) 1164883005 */}
           <BsWhatsapp /> (54) 1164883005
         </div>
         <ul className={styles.social}>

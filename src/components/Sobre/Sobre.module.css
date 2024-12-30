@@ -142,16 +142,16 @@
         
     }
     .textsobre{
-        width: 100%;
+        width: 90%;
     }
     .sobreimg{
-        width: 350px;
-        height: 350px;
+        width: 300px;
+        height: 300px;
     }
     
     .sobreimg img{
-        width: 340px;
-        height: 340px;
+        width: 300px;
+        height: 300px;
     }
 
     /**/

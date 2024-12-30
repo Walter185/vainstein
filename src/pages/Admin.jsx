@@ -221,17 +221,17 @@ const UserProfile = () => {
           ) : (
             <>
             <button
-              className="btn btn-secondary"
+              className="btn btn-warning"
               onClick={() => setIsEditing(true)}
             >
               Editar Perfil
             </button>
             <span> </span>
             <a
-            className="btn btn-secondary"
+            className="btn btn-primary"
             href="/turnos"
             >
-                Modificar Turno
+                Nuevo Turno
             </a>
               </>
               )}
